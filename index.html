@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DetailRank — We Get Auto Detailers to #1 on Google Maps</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafaf8;
+  --cream: #f5f2eb;
+  --orange: #e85d04;
+  --orange-dark: #c44d02;
+  --orange-light: #ff8534;
+  --gold: #d4a017;
+  --gray-100: #f0ede6;
+  --gray-200: #d9d6ce;
+  --gray-400: #9a9690;
+  --gray-600: #5c5a56;
+  --gray-800: #2a2926;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(232,93,4,0.3);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--gray-200);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--orange-light); }
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 3px;
+  font-weight: 600 !important;
+}
+
+.nav-cta:hover { background: var(--orange-dark); color: var(--white) !important; }
+
+/* PAGE SECTIONS */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ==================== HOME PAGE ==================== */
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,93,4,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,93,4,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(232,93,4,0.15) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--orange);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--orange);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: var(--white);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .accent { color: var(--orange); }
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* VSL BOX */
+.vsl-wrap {
+  position: relative;
+}
+
+.vsl-box {
+  background: var(--gray-800);
+  border: 1px solid rgba(232,93,4,0.3);
+  border-radius: 8px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.vsl-thumb {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.vsl-play {
+  width: 70px; height: 70px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.vsl-box:hover .vsl-play {
+  transform: scale(1.1);
+  background: var(--orange-dark);
+}
+
+.vsl-play svg { margin-left: 4px; }
+
+.vsl-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.vsl-duration {
+  position: absolute;
+  bottom: 12px; right: 14px;
+  background: rgba(0,0,0,0.7);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.vsl-badge {
+  position: absolute;
+  top: -12px; left: 20px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* TRUST BAR */
+.trust-bar {
+  background: var(--cream);
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 1.25rem 2rem;
+  overflow: hidden;
+}
+
+.trust-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trust-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.trust-stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.trust-stat-label {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  font-weight: 500;
+  line-height: 1.3;
+  max-width: 90px;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--gray-200);
+}
+
+/* PAIN SECTION */
+.pain-section {
+  background: var(--black);
+  padding: 6rem 2rem;
+}
+
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--orange);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(232,93,4,0.3);
+  max-width: 60px;
+}
+
+.section-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 3rem;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.pain-card {
+  background: var(--gray-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--orange);
+}
+
+.pain-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pain-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.pain-card p {
+  font-size: 0.9rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+}
+
+/* ABOUT */
+.about-section {
+  background: var(--cream);
+  padding: 6rem 2rem;
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-photo-wrap {
+  position: relative;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--gray-200);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d9d6ce 0%, #b8b4ac 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.about-photo-placeholder svg { opacity: 0.4; }
+
+.about-photo-placeholder span {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  font-style: italic;
+}
+
+.about-badge {
+  position: absolute;
+  bottom: -16px; right: -16px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.about-badge small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.about-text .section-h2 { color: var(--black); }
+
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.about-text p strong { color: var(--black); font-weight: 600; }
+
+/* OFFER */
+.offer-section {
+  background: var(--white);
+  padding: 6rem 2rem;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.offer-item {
+  background: var(--white);
+  padding: 2rem 1.75rem;
+  position: relative;
+}
+
+.offer-item:hover { background: var(--cream); }
+
+.offer-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gray-200);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.offer-item:hover .offer-num { color: var(--orange); }
+
+.offer-item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.offer-item p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* SEO PROCESS */
+.process-section {
+  background: var(--black);
+  padding: 6rem 2rem;
+}
+
+.process-section .section-h2 { color: var(--white); }
+
+.process-intro {
+  font-size: 1.05rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.process-timeline {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  left: 120px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(232,93,4,0.25);
+}
+
+.process-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.process-when {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--orange);
+  text-align: right;
+  padding-top: 0.3rem;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.process-dot {
+  position: absolute;
+  left: 113px; top: 8px;
+  width: 15px; height: 15px;
+  background: var(--orange);
+  border-radius: 50%;
+  border: 3px solid var(--black);
+}
+
+.process-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.process-content p {
+  font-size: 0.88rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+}
+
+.process-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.process-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--orange);
+  background: rgba(232,93,4,0.1);
+  border: 1px solid rgba(232,93,4,0.2);
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* TESTIMONIALS */
+.testimonials-section {
+  background: var(--cream);
+  padding: 6rem 2rem;
+}
+
+.testimonials-section .section-h2 { color: var(--black); }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.testi-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+}
+
+.testi-quote-mark {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--orange);
+  line-height: 0.8;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.testi-card p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.testi-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--black);
+}
+
+.testi-biz {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* PRICING */
+.pricing-section {
+  background: var(--white);
+  padding: 6rem 2rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 820px;
+  margin: 3rem auto 0;
+}
+
+.pricing-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+.pricing-card.featured {
+  border: 2px solid var(--orange);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pricing-tier {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--orange);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-price sup {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  vertical-align: super;
+  font-weight: 600;
+}
+
+.pricing-per {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  margin-bottom: 1.75rem;
+  display: block;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.pricing-features li {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pricing-features li::before {
+  content: '✓';
+  color: var(--orange);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* FAQ */
+.faq-section {
+  background: var(--cream);
+  padding: 6rem 2rem;
+}
+
+.faq-section .section-h2 { color: var(--black); }
+
+.faq-list {
+  max-width: 760px;
+  margin: 3rem auto 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.5rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-q:hover { color: var(--orange); }
+
+.faq-chevron {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  font-size: 0.7rem;
+}
+
+.faq-item.open .faq-chevron { transform: rotate(180deg); border-color: var(--orange); color: var(--orange); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s;
+}
+
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
+
+.faq-a p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
+
+/* HOME CALENDLY CTA */
+.home-cta {
+  background: var(--black);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.home-cta .section-h2 { color: var(--white); margin-bottom: 1rem; }
+
+.home-cta p {
+  color: var(--gray-400);
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.calendly-embed {
+  background: var(--gray-800);
+  border: 1px solid rgba(232,93,4,0.25);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.calendly-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calendly-icon {
+  width: 56px; height: 56px;
+  background: rgba(232,93,4,0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.calendly-placeholder h3 {
+  font-size: 1.1rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.calendly-placeholder p {
+  font-size: 0.88rem;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+.calendly-placeholder .btn-primary {
+  margin-top: 0.5rem;
+}
+
+/* ==================== HOW IT WORKS ==================== */
+
+.hiw-hero {
+  background: var(--black);
+  padding: 10rem 2rem 6rem;
+  text-align: center;
+}
+
+.hiw-hero .section-label { justify-content: center; }
+.hiw-hero .section-label::after { display: none; }
+.hiw-hero .section-label::before { content: ''; width: 24px; height: 1px; background: var(--orange); display: block; }
+
+.hiw-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--white);
+  line-height: 0.95;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+}
+
+.hiw-hero p {
+  font-size: 1.05rem;
+  color: var(--gray-400);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.seo-work-section {
+  background: var(--white);
+  padding: 6rem 2rem;
+}
+
+.seo-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.compare-col h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+}
+
+.compare-col.bad h3 {
+  background: #fff0ee;
+  color: #c44d02;
+  border-radius: 6px 6px 0 0;
+}
+
+.compare-col.good h3 {
+  background: var(--orange);
+  color: var(--white);
+  border-radius: 6px 6px 0 0;
+}
+
+.compare-list {
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+}
+
+.compare-list li {
+  list-style: none;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gray-600);
+}
+
+.compare-list li:last-child { border-bottom: none; }
+
+.compare-col.bad .compare-list li::before { content: '✗'; color: #c44d02; font-weight: 700; }
+.compare-col.good .compare-list li::before { content: '✓'; color: var(--orange); font-weight: 700; }
+
+.monthly-work {
+  background: var(--black);
+  padding: 6rem 2rem;
+}
+
+.monthly-work .section-h2 { color: var(--white); }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.work-card {
+  background: var(--gray-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem;
+}
+
+.work-card-freq {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.work-card h3 {
+  font-size: 0.95rem;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.work-card p {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+/* ==================== RESULTS ==================== */
+
+.results-hero {
+  background: var(--black);
+  padding: 10rem 2rem 6rem;
+  text-align: center;
+}
+
+.results-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.results-hero p {
+  color: var(--gray-400);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.case-studies {
+  background: var(--white);
+  padding: 6rem 2rem;
+}
+
+.case-study {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.case-study:last-child { border-bottom: none; margin-bottom: 0; }
+.case-study:nth-child(even) .case-visual { order: 2; }
+.case-study:nth-child(even) .case-text { order: 1; }
+
+.case-visual {
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.maps-mock {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.maps-mock-header {
+  background: var(--gray-100);
+  padding: 0.75rem 1rem;
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  font-family: var(--font-mono);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.maps-result {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.maps-rank {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.maps-rank.rank-1 { background: var(--orange); color: var(--white); }
+.maps-rank.rank-2 { background: var(--gray-200); color: var(--gray-600); }
+.maps-rank.rank-3 { background: var(--gray-200); color: var(--gray-600); }
+
+.maps-info h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.maps-stars { color: var(--gold); font-size: 0.75rem; }
+.maps-meta { font-size: 0.75rem; color: var(--gray-400); }
+
+.case-text h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.case-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--orange);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.case-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.case-stat {
+  text-align: center;
+  background: var(--cream);
+  border-radius: 6px;
+  padding: 1rem 0.5rem;
+}
+
+.case-stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1;
+}
+
+.case-stat-label {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  margin-top: 3px;
+  display: block;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.case-text p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+/* BOOK PAGE */
+.book-page {
+  min-height: 100vh;
+  background: var(--black);
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.book-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.book-left h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.book-left h1 span { color: var(--orange); }
+
+.book-left p {
+  font-size: 1rem;
+  color: var(--gray-400);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.book-bullets {
+  list-style: none;
+  margin-bottom: 2.5rem;
+}
+
+.book-bullets li {
+  font-size: 0.9rem;
+  color: var(--gray-200);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.book-bullets li::before {
+  content: '→';
+  color: var(--orange);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.book-host {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.book-host-avatar {
+  width: 52px; height: 52px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--white);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.book-host-name { font-weight: 600; color: var(--white); font-size: 0.95rem; }
+.book-host-title { font-size: 0.8rem; color: var(--gray-400); font-family: var(--font-mono); }
+
+.book-calendly {
+  background: var(--gray-800);
+  border: 1px solid rgba(232,93,4,0.25);
+  border-radius: 8px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.book-calendly h3 { color: var(--white); margin-bottom: 0.5rem; font-size: 1.1rem; }
+.book-calendly p { color: var(--gray-400); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+.book-reassure {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--gray-600);
+  font-style: italic;
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-logo span { color: var(--orange); }
+
+footer p {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  margin-bottom: 0.25rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-text, .hero h1, .hero-sub, .hero-btns {
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero h1 { animation-delay: 0.1s; }
+.hero-sub { animation-delay: 0.2s; }
+.hero-btns { animation-delay: 0.3s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-inner, .about-inner, .seo-compare, .case-study, .book-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .pain-grid, .testi-grid, .pricing-grid, .work-grid {
+    grid-template-columns: 1fr;
+  }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .case-study:nth-child(even) .case-visual,
+  .case-study:nth-child(even) .case-text { order: unset; }
+  .about-badge { bottom: -10px; right: -5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Detail<span>Rank</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('hiw')">How It Works</a></li>
+    <li><a href="#" onclick="showPage('results')">Results</a></li>
+    <li><a href="#" onclick="showPage('book')" class="nav-cta">Book a Call →</a></li>
+  </ul>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Auto Detailing Growth Agency</div>
+        <h1>We Get You Into the <span class="accent">Top 3</span> on Google Maps</h1>
+        <p class="hero-sub">Done-for-you SEO, websites, and reputation management — so customers find you first, not your competitor down the road. From $297/mo, no tech skills needed.</p>
+        <div class="hero-btns">
+          <a href="#" onclick="showPage('book')" class="btn-primary">Book a Free Strategy Call →</a>
+          <a href="#" onclick="showPage('hiw')" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="vsl-wrap">
+        <div class="vsl-badge">Watch This First</div>
+        <div class="vsl-box" onclick="alert('Replace this with your Loom or Vimeo embed — 60–90 second VSL talking directly to auto detailers.')">
+          <div class="vsl-thumb">
+            <div class="vsl-play">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vsl-label">Watch — how we get detailers to #1</div>
+          </div>
+          <div class="vsl-duration">1:24</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-stat">
+        <div class="trust-stat-num">47</div>
+        <div class="trust-stat-label">Detailers currently ranking</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">93%</div>
+        <div class="trust-stat-label">Hit top 3 within 90 days</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">4.9★</div>
+        <div class="trust-stat-label">Average client rating</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">$0</div>
+        <div class="trust-stat-label">Setup fee, ever</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div class="section-inner">
+      <div class="section-label">Sound familiar?</div>
+      <h2 class="section-h2" style="color:var(--white);">The Problems <br>Killing Your Growth</h2>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <span class="pain-icon">📞</span>
+          <h3>Still relying on word of mouth?</h3>
+          <p>Referrals are great until they dry up. If you're not showing up on Google Maps when someone types "car detailing near me," you're leaving jobs on the table every single day.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-icon">😤</span>
+          <h3>Losing to competitors who rank higher?</h3>
+          <p>That shop down the road doing inferior work is booked solid because they show up first. Ranking isn't about quality — it's about strategy. Let's change that.</p>
+        </div>
+        <div class="pain-card">
+          <span class="pain-icon">💸</span>
+          <h3>Paid for a website that brings zero leads?</h3>
+          <p>A pretty website means nothing if nobody finds it. Most detailing websites aren't built for SEO. They're digital brochures that collect dust while your phone stays quiet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="about-inner">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          <div class="about-photo-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Your photo goes here</span>
+          </div>
+        </div>
+        <div class="about-badge">
+          3+ YRS<br>
+          <small>In the industry</small>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">Who you're dealing with</div>
+        <h2 class="section-h2">I'm Not an Agency.<br>I'm Your Growth Partner.</h2>
+        <p>Hey — I'm <strong>[Your Name]</strong>. I built DetailRank specifically for auto detailers because I got tired of watching talented operators stay invisible online while cheaper, mediocre shops ranked above them.</p>
+        <p>I handle the entire digital side of your business — SEO, website, reviews, content — so you can stay in the bay doing what you're actually good at. <strong>No jargon, no fluff, no outsourcing to someone who's never heard of a clay bar.</strong></p>
+        <p>You'll have my personal number. When you've got a question, you're talking to me.</p>
+        <a href="#" onclick="showPage('book')" class="btn-primary" style="margin-top:0.5rem;">Let's Talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section class="offer-section">
+    <div class="section-inner">
+      <div class="section-label">Everything included</div>
+      <h2 class="section-h2">One Monthly Fee.<br>Everything You Need.</h2>
+      <div class="offer-grid">
+        <div class="offer-item">
+          <div class="offer-num">01</div>
+          <h3>SEO-Optimised Website</h3>
+          <p>Built from scratch to rank. Fast, mobile-first, structured for Google — not just pretty.</p>
+        </div>
+        <div class="offer-item">
+          <div class="offer-num">02</div>
+          <h3>AI Chat Bot</h3>
+          <p>Embedded on your site. Captures leads at 2am when you're not picking up the phone.</p>
+        </div>
+        <div class="offer-item">
+          <div class="offer-num">03</div>
+          <h3>Google Reviews Widget</h3>
+          <p>Your 5-star reviews displayed live on your site. Builds trust before they call.</p>
+        </div>
+        <div class="offer-item">
+          <div class="offer-num">04</div>
+          <h3>Bad Review Removal</h3>
+          <p>We flag and fight unfair reviews. Protect your reputation, protect your ranking.</p>
+        </div>
+        <div class="offer-item">
+          <div class="offer-num">05</div>
+          <h3>Domain + Website Hosting</h3>
+          <p>We own the headache so you don't have to. Secure, fast, always on.</p>
+        </div>
+        <div class="offer-item">
+          <div class="offer-num">06</div>
+          <h3>GBP Optimisation + Weekly Posts</h3>
+          <p>Weekly Google Business Profile posts, photos, keyword-rich updates — the fuel that drives Maps ranking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="section-inner">
+      <div class="section-label">The real work behind ranking</div>
+      <h2 class="section-h2" style="color:var(--white);">Here's What $297/mo <br>Actually Gets You Done</h2>
+      <p class="process-intro">Most detailers don't realise how much goes into ranking on Google Maps. Here's exactly what happens — every single week — when you're a client.</p>
+      <div class="process-timeline">
+        <div class="process-item">
+          <div class="process-when">Day 1–3<br>Onboarding</div>
+          <div class="process-dot"></div>
+          <div class="process-content">
+            <h3>Full audit + strategy session</h3>
+            <p>We audit your current GBP, check where you rank, analyse your top 3 competitors, and map out the exact gaps we need to close to beat them.</p>
+            <div class="process-tags">
+              <span class="process-tag">GBP Audit</span>
+              <span class="process-tag">Competitor Analysis</span>
+              <span class="process-tag">Keyword Research</span>
+            </div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-when">Week 1<br>Setup</div>
+          <div class="process-dot"></div>
+          <div class="process-content">
+            <h3>Website goes live + GBP overhaul</h3>
+            <p>Your new SEO-optimised website is built and launched. GBP is fully optimised — photos, categories, service areas, descriptions, Q&A — every field filled correctly.</p>
+            <div class="process-tags">
+              <span class="process-tag">Website Launch</span>
+              <span class="process-tag">GBP Optimisation</span>
+              <span class="process-tag">Citations Built</span>
+            </div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-when">Ongoing<br>Weekly</div>
+          <div class="process-dot"></div>
+          <div class="process-content">
+            <h3>Weekly GBP posts + content</h3>
+            <p>Every week: a keyword-targeted GBP post with photos. This signals to Google your business is active and relevant — one of the biggest ranking factors most shops ignore.</p>
+            <div class="process-tags">
+              <span class="process-tag">GBP Posts</span>
+              <span class="process-tag">Photo Updates</span>
+              <span class="process-tag">Offer Posts</span>
+            </div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-when">Ongoing<br>Monthly</div>
+          <div class="process-dot"></div>
+          <div class="process-content">
+            <h3>SEO articles + review management</h3>
+            <p>Monthly keyword articles published to your site, building your domain authority over time. Review velocity management — we monitor, respond, and flag anything suspicious.</p>
+            <div class="process-tags">
+              <span class="process-tag">Blog Articles</span>
+              <span class="process-tag">Review Responses</span>
+              <span class="process-tag">Rank Tracking</span>
+              <span class="process-tag">Monthly Report</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-inner">
+      <div class="section-label">Real clients, real results</div>
+      <h2 class="section-h2" style="color:var(--black);">What Detailers Are Saying</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <span class="stars">★★★★★</span>
+          <span class="testi-quote-mark">"</span>
+          <p>Within 6 weeks we jumped from page 3 to the top 3 on Google Maps. I've had 3 new regular customers mention they found me on Google this month alone. Best investment I've made in my business.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MK</div>
+            <div>
+              <div class="testi-name">Mike K.</div>
+              <div class="testi-biz">MK Auto Detail · Manchester</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="stars">★★★★★</span>
+          <span class="testi-quote-mark">"</span>
+          <p>I was sceptical spending money every month but the results speak for themselves. My phone rings now. The chatbot even books jobs overnight while I'm sleeping. Absolutely worth every penny.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JS</div>
+            <div>
+              <div class="testi-name">James S.</div>
+              <div class="testi-biz">Premium Detail Co. · Birmingham</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="stars">★★★★★</span>
+          <span class="testi-quote-mark">"</span>
+          <p>Had a bad review dragging my rating down for months. They got it removed in 2 weeks. Combined with the weekly posts, I'm now the first result when anyone searches detailing in my area.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">CR</div>
+            <div>
+              <div class="testi-name">Chris R.</div>
+              <div class="testi-biz">Shine Detail Studio · Leeds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section">
+    <div class="section-inner">
+      <div class="section-label">Simple pricing</div>
+      <h2 class="section-h2">No Contracts. No Surprises.<br>Cancel Anytime.</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price"><sup>$</sup>297</div>
+          <span class="pricing-per">per month · no setup fee</span>
+          <ul class="pricing-features">
+            <li>SEO-optimised website</li>
+            <li>Domain + website hosting</li>
+            <li>GBP optimisation</li>
+            <li>Weekly GBP posts</li>
+            <li>Google Reviews widget</li>
+            <li>Contact form</li>
+            <li>Monthly rank report</li>
+          </ul>
+          <a href="#" onclick="showPage('book')" class="btn-secondary" style="width:100%; justify-content:center;">Book a Call →</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-tier">Growth</div>
+          <div class="pricing-price"><sup>$</sup>397</div>
+          <span class="pricing-per">per month · no setup fee</span>
+          <ul class="pricing-features">
+            <li>Everything in Starter</li>
+            <li>AI chatbot embed</li>
+            <li>Bad review removal</li>
+            <li>Monthly SEO article</li>
+            <li>Citation building</li>
+            <li>Priority support</li>
+            <li>Competitor rank tracking</li>
+          </ul>
+          <a href="#" onclick="showPage('book')" class="btn-primary" style="width:100%; justify-content:center;">Book a Call →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-inner">
+      <div class="section-label">Questions</div>
+      <h2 class="section-h2">Everything You're<br>Probably Wondering</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How long until I start ranking on Google Maps?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>Most clients see movement within 4–6 weeks and hit the top 3 within 90 days. SEO isn't instant, but with consistent weekly posts, proper GBP optimisation, and citation building, the results compound fast. We share a monthly rank tracking report so you can see the progress clearly.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Do I need to do anything, or is it fully hands-off?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>Almost fully hands-off. We'll need about 30 minutes from you at the start — your logo, a few photos, your services and prices. After that, we handle everything. The most you'll ever be asked to do is send a photo from a job for a GBP post, which is optional.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            I already have a website. Can you still help?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>Yes. If your existing site is worth keeping, we can optimise it for SEO rather than rebuild it — though most detailing websites we see aren't structured for ranking and a rebuild is the faster path. We'll be honest about what makes more sense on your strategy call.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Is there a contract?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>No long-term contracts. We ask for 3 months to show results — SEO takes time to build — but beyond that, you're month-to-month and can cancel at any time with 30 days notice. We keep clients through results, not contracts.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What makes you different from a regular SEO agency?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>We only work with auto detailers. We know the keywords, the local ranking factors, and what it takes to compete in your specific market. A generalist agency will take months to understand your business — we're already there. Plus you deal with one person, not a revolving door of account managers.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can you actually remove bad reviews?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><p>We flag reviews that violate Google's policies — fake reviews, reviews from non-customers, reviews containing prohibited content. Google removes roughly 60–70% of what we flag. We can't remove a legitimate bad review from a real customer, and we won't promise that. But we can help you respond professionally and build up your positive review volume.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME CTA -->
+  <section class="home-cta">
+    <div class="section-inner">
+      <div class="section-label" style="justify-content:center;"><span style="display:block;width:24px;height:1px;background:var(--orange);"></span>Ready to rank?<span style="display:block;width:24px;height:1px;background:var(--orange);"></span></div>
+      <h2 class="section-h2">Book Your Free<br>Strategy Call</h2>
+      <p>20 minutes. No obligation. We'll show you exactly where you rank today and what it'll take to get you to the top 3.</p>
+      <div class="calendly-embed">
+        <div class="calendly-placeholder">
+          <div class="calendly-icon">📅</div>
+          <h3>Schedule Your Free 20-Min Strategy Call</h3>
+          <p>Paste your Calendly embed code here — replace this entire div with:<br><code style="font-size:0.78rem;color:var(--orange);">&lt;!-- Calendly inline widget begin --&gt;</code></p>
+          <a href="#" onclick="showPage('book')" class="btn-primary">Open Booking Page →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home -->
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<div id="page-hiw" class="page">
+  <section class="hiw-hero">
+    <div class="hero-grid-bg" style="position:absolute;inset:0;"></div>
+    <div style="position:relative;">
+      <div class="section-label" style="justify-content:center;">The process</div>
+      <h1>What We Actually Do<br><span style="color:var(--orange);">Every Single Week</span></h1>
+      <p>Most agencies are a black box. We're not. Here's exactly what happens when you become a client — and why it works.</p>
+    </div>
+  </section>
+
+  <section class="seo-work-section">
+    <div class="section-inner">
+      <div class="section-label">The honest comparison</div>
+      <h2 class="section-h2">What Most Detailers Do<br>vs What We Do</h2>
+      <div class="seo-compare">
+        <div class="compare-col bad">
+          <h3>❌ What most detailers do</h3>
+          <ul class="compare-list">
+            <li>Set up GBP profile once and forget it</li>
+            <li>Never post updates or photos</li>
+            <li>Website sits static for years</li>
+            <li>Ignore bad reviews or argue back</li>
+            <li>No keyword strategy</li>
+            <li>Business name and address inconsistent across the web</li>
+            <li>No idea where they actually rank</li>
+          </ul>
+        </div>
+        <div class="compare-col good">
+          <h3>✓ What DetailRank clients get</h3>
+          <ul class="compare-list">
+            <li>Weekly GBP posts with targeted keywords</li>
+            <li>Fresh photos and service updates monthly</li>
+            <li>Site updated with new content regularly</li>
+            <li>Professional review responses + bad review flagging</li>
+            <li>Full local keyword strategy per city/suburb</li>
+            <li>Citation audit — NAP consistency across 50+ directories</li>
+            <li>Monthly rank tracking report with clear progress</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="monthly-work">
+    <div class="section-inner">
+      <div class="section-label">The ongoing engine</div>
+      <h2 class="section-h2">The Work Behind Your Ranking</h2>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-card-freq">Every week</div>
+          <h3>GBP Post</h3>
+          <p>Keyword-rich posts with photos — the #1 signal Google uses for Maps ranking activity.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Every week</div>
+          <h3>Review Monitoring</h3>
+          <p>Every new review tracked. Responses drafted and published. Bad ones flagged.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Every month</div>
+          <h3>SEO Article</h3>
+          <p>A long-form keyword article published to your site, building domain authority over time.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Every month</div>
+          <h3>Rank Report</h3>
+          <p>Plain-English report showing where you rank for your target keywords vs last month.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Every month</div>
+          <h3>Citation Check</h3>
+          <p>We ensure your name, address and phone match exactly across every directory Google checks.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Every quarter</div>
+          <h3>GBP Deep Audit</h3>
+          <p>Full review of your profile — categories, services, photos, Q&A — updated to stay ahead.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Ongoing</div>
+          <h3>Competitor Watch</h3>
+          <p>We track what your top competitors are doing and adjust your strategy accordingly.</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-freq">Anytime</div>
+          <h3>Direct Access</h3>
+          <p>Message or call any time. You're not waiting on a ticket queue — you've got my number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-cta">
+    <div class="section-inner">
+      <h2 class="section-h2">Seen enough?</h2>
+      <p>Let's have a 20-minute call and look at exactly where you rank today — and what it'll take to hit the top 3.</p>
+      <a href="#" onclick="showPage('book')" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem;">Book Your Free Strategy Call →</a>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== RESULTS ===================== -->
+<div id="page-results" class="page">
+  <section class="results-hero" style="position:relative;">
+    <div class="hero-grid-bg" style="position:absolute;inset:0;"></div>
+    <div style="position:relative;">
+      <div class="section-label" style="justify-content:center;"></div>
+      <h1 style="font-family:var(--font-display);color:var(--white);">Real Detailers.<br><span style="color:var(--orange);">Real Rankings.</span></h1>
+      <p>Before and after. No stock photos. No made-up numbers. Just what happened when these shops stopped being invisible online.</p>
+    </div>
+  </section>
+
+  <section class="case-studies">
+    <div class="section-inner">
+
+      <div class="case-study">
+        <div class="case-visual">
+          <div class="maps-mock">
+            <div class="maps-mock-header">Google Maps · "car detailing Manchester"</div>
+            <div class="maps-result">
+              <div class="maps-rank rank-1">1</div>
+              <div class="maps-info">
+                <h4>MK Auto Detail</h4>
+                <div class="maps-stars">★★★★★ <span style="font-size:0.8rem;color:var(--gray-600);">4.9 (87 reviews)</span></div>
+                <div class="maps-meta">Auto detailing · Open now</div>
+              </div>
+            </div>
+            <div class="maps-result">
+              <div class="maps-rank rank-2">2</div>
+              <div class="maps-info">
+                <h4>City Shine Detailing</h4>
+                <div class="maps-stars">★★★★☆ <span style="font-size:0.8rem;color:var(--gray-600);">4.6 (34 reviews)</span></div>
+                <div class="maps-meta">Car detailing service</div>
+              </div>
+            </div>
+            <div class="maps-result">
+              <div class="maps-rank rank-3">3</div>
+              <div class="maps-info">
+                <h4>ProShine Auto Care</h4>
+                <div class="maps-stars">★★★★☆ <span style="font-size:0.8rem;color:var(--gray-600);">4.4 (21 reviews)</span></div>
+                <div class="maps-meta">Auto detailing</div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.75rem;text-align:center;font-style:italic;">Before: page 3. After 8 weeks: #1 on Maps.</p>
+        </div>
+        <div class="case-text">
+          <span class="case-tag">Case Study 01 · Manchester</span>
+          <h3>MK Auto Detail</h3>
+          <div class="case-stats">
+            <div class="case-stat">
+              <span class="case-stat-num">#1</span>
+              <span class="case-stat-label">Maps ranking</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">8wk</span>
+              <span class="case-stat-label">Time to top 3</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">+4</span>
+              <span class="case-stat-label">New regulars/mo</span>
+            </div>
+          </div>
+          <p>Mike had been running his detailing business for 4 years on referrals alone. Good reputation, busy enough — but he knew he was leaving money on the table. He had a basic website a mate built him and an unclaimed GBP profile.</p>
+          <p>Week 1 we rebuilt his site, claimed and fully optimised his GBP, and started the weekly posting cadence. By week 6 he'd moved from page 3 into the local pack. By week 8 he was #1 for "car detailing Manchester."</p>
+          <p><em style="color:var(--orange);">"I've had 3 new regular customers mention they found me on Google this month alone."</em></p>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-text">
+          <span class="case-tag">Case Study 02 · Leeds</span>
+          <h3>Shine Detail Studio</h3>
+          <div class="case-stats">
+            <div class="case-stat">
+              <span class="case-stat-num">#1</span>
+              <span class="case-stat-label">Maps ranking</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">3.8★</span>
+              <span class="case-stat-label">Rating rescued</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat-num">+19</span>
+              <span class="case-stat-label">New reviews in 90 days</span>
+            </div>
+          </div>
+          <p>Chris had a problem most detailers face — a fake 1-star review dragging his overall rating down. Combined with an unoptimised GBP and a static website, he wasn't showing up for anything.</p>
+          <p>We got the fake review removed in 2 weeks. Built a review generation strategy that added 19 genuine 5-star reviews over 90 days. SEO-optimised his GBP and started the content engine.</p>
+          <p><em style="color:var(--orange);">"Now the first result when anyone searches detailing in my area — and my phone actually rings."</em></p>
+        </div>
+        <div class="case-visual">
+          <div class="maps-mock">
+            <div class="maps-mock-header">Google Maps · "auto detailing Leeds"</div>
+            <div class="maps-result">
+              <div class="maps-rank rank-1">1</div>
+              <div class="maps-info">
+                <h4>Shine Detail Studio</h4>
+                <div class="maps-stars">★★★★★ <span style="font-size:0.8rem;color:var(--gray-600);">4.9 (63 reviews)</span></div>
+                <div class="maps-meta">Auto detailing · Open now</div>
+              </div>
+            </div>
+            <div class="maps-result">
+              <div class="maps-rank rank-2">2</div>
+              <div class="maps-info">
+                <h4>Yorkshire Auto Spa</h4>
+                <div class="maps-stars">★★★★☆ <span style="font-size:0.8rem;color:var(--gray-600);">4.5 (29 reviews)</span></div>
+                <div class="maps-meta">Car wash & detailing</div>
+              </div>
+            </div>
+            <div class="maps-result">
+              <div class="maps-rank rank-3">3</div>
+              <div class="maps-info">
+                <h4>Leeds Mobile Detailing</h4>
+                <div class="maps-stars">★★★★☆ <span style="font-size:0.8rem;color:var(--gray-600);">4.3 (18 reviews)</span></div>
+                <div class="maps-meta">Mobile detailing</div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.75rem;text-align:center;font-style:italic;">Fake review removed. 19 new 5-stars. #1 in 10 weeks.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="home-cta">
+    <div class="section-inner">
+      <h2 class="section-h2">Your Shop Could Be<br>Our Next Case Study</h2>
+      <p>Book a free strategy call and we'll show you where you rank right now — and exactly what it'll take to get to the top.</p>
+      <a href="#" onclick="showPage('book')" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem;">Book Your Free Strategy Call →</a>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== BOOK PAGE ===================== -->
+<div id="page-book" class="page">
+  <div class="book-page">
+    <div class="book-inner">
+      <div class="book-left">
+        <div class="section-label" style="color:var(--orange);">Free strategy call</div>
+        <h1>Let's Get You to <span>#1</span> on Google Maps</h1>
+        <p>This is a 20-minute conversation — not a sales pitch. We'll look at where you're ranking right now and give you an honest picture of what it takes to hit the top 3 in your area.</p>
+        <ul class="book-bullets">
+          <li>We'll audit your current Google Maps ranking live on the call</li>
+          <li>Show you exactly what your top competitors are doing better</li>
+          <li>Give you a clear game plan — whether you work with us or not</li>
+          <li>No pressure, no upsell tactics, no BS</li>
+        </ul>
+        <div class="book-host">
+          <div class="book-host-avatar">[Y]</div>
+          <div>
+            <div class="book-host-name">[Your Name] · Founder, DetailRank</div>
+            <div class="book-host-title">You're talking to me. Not an assistant.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="book-calendly">
+          <h3>Pick a Time That Works For You</h3>
+          <p>20 minutes · Google Meet · Free</p>
+          <div style="background:var(--black);border-radius:6px;padding:2rem;margin:1rem 0;">
+            <p style="color:var(--gray-600);font-size:0.82rem;font-style:italic;margin-bottom:1rem;">Paste your Calendly inline embed code here:</p>
+            <code style="font-size:0.75rem;color:var(--orange);display:block;text-align:left;line-height:1.8;">
+              &lt;!-- Calendly inline widget begin --&gt;<br>
+              &lt;div class="calendly-inline-widget"<br>
+              &nbsp;&nbsp;data-url="https://calendly.com/YOUR-LINK"<br>
+              &nbsp;&nbsp;style="min-width:320px;height:700px;"&gt;<br>
+              &lt;/div&gt;<br>
+              &lt;script src="https://assets.calendly.com/assets/external/widget.js"&gt;&lt;/script&gt;<br>
+              &lt;!-- Calendly inline widget end --&gt;
+            </code>
+          </div>
+          <a href="https://calendly.com" target="_blank" class="btn-primary" style="width:100%;justify-content:center;">Open Calendly to Set Up Your Link →</a>
+          <p class="book-reassure">This is a conversation, not a commitment. If we're not the right fit, we'll tell you — and you'll still leave with a clear picture of your rankings.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Detail<span>Rank</span></div>
+  <p>Done-for-you SEO & digital marketing for auto detailers.</p>
+  <p style="margin-top:0.5rem;">© 2025 DetailRank · <a href="#" onclick="showPage('book')" style="color:var(--orange);text-decoration:none;">Book a Call</a></p>
+</footer>
+
+<script>
+const PAGES = ['home', 'hiw', 'results', 'book'];
+
+function showPage(id) {
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.classList.remove('active');
+  });
+  const target = document.getElementById('page-' + id);
+  if (target) target.classList.add('active');
+  window.location.hash = id === 'home' ? '' : id;
+  window.scrollTo(0, 0);
+}
+
+function handleHash() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  const valid = PAGES.includes(hash) ? hash : 'home';
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.classList.remove('active');
+  });
+  const target = document.getElementById('page-' + valid);
+  if (target) target.classList.add('active');
+}
+
+// Handle back/forward browser buttons
+window.addEventListener('hashchange', handleHash);
+
+// Load correct page on first visit
+window.addEventListener('DOMContentLoaded', handleHash);
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
